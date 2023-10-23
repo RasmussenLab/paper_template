@@ -1,0 +1,233 @@
+\documentclass[10pt,b5paper,twoside,openany]{memoir}
+
+
+
+
+%%% Packages 
+\usepackage[utf8]{inputenc}
+\usepackage[danish,english]{babel}
+\usepackage{pdfpages}%include pdfs
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{blindtext}% dummy text
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage[font={small}]{caption}
+\usepackage{enumitem}
+\usepackage[backend=biber,sorting=none]{biblatex}
+\usepackage{csquotes}
+\addbibresource{disbib.bib}
+
+\DeclareUnicodeCharacter{0308}{.}
+
+\usepackage{listings}
+\usepackage{xcolor}
+%% Colors 
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{dtured}{rgb}{0.60, 0.00, 0.00}
+\colorlet{thecolor}{dtured!100!}
+\definecolor{thechptclr}{gray}{0.6}
+\definecolor{thecaptionclr}{gray}{0.6}
+\definecolor{gray20}{gray}{0.20}
+\definecolor{gray40}{gray}{0.40}
+ 
+\lstdefinestyle{mystyle}{
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=true,         
+    breaklines=true,                 
+    captionpos=b,
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+ 
+\lstset{style=mystyle}
+
+\pagenumbering{roman}
+
+\title{The Title}
+
+\author{First Last}
+\date{22$^{th}$ October, 2022}
+
+%%%%%%%%% WRITE THE SECTION NAME IN THE HEADER %%%%%
+%\pagestyle{headings}
+
+\chapterstyle{tandh}
+
+% adjust caption formatting (memoir)
+\captionnamefont{\bfseries} 
+\captiondelim{. }
+\changecaptionwidth
+\captionwidth{5in}
+\captionsetup{belowskip=0pt}
+
+
+%%%%%%%%%% customization: formatting for Figure, Table, Equation references
+\usepackage{graphicx}
+%running fraction with slash - requires math mode.
+\newcommand*\rfrac[2]{{}^{#1}\!/_{#2}}
+\newcommand{\fig}[2]{\textbf{Figure~\ref{#1}{#2}}} 
+\newcommand{\tab}[2]{\textbf{Table~\ref{#1}{#2}}} 
+\newcommand{\tabb}{\hspace*{2em}}
+\newcommand{\sub}[1]{\mbox{(\textbf{#1})}} % formatting for subfigure label within a caption
+\newcommand{\prog}[1]{\texttt{#1}}
+
+\newcommand{\fixme}[1]{\textbf{\underline{#1}}} 
+%%%Font size on chapters, sections and subsections
+\newcommand*{\justifyheading}{\raggedleft}
+
+\titleformat*{\section}{\LARGE\bfseries}
+\titleformat*{\subsection}{\Large\bfseries}
+\titleformat*{\subsubsection}{\large\bfseries}
+\titleformat*{\paragraph}{\large\bfseries}
+\titleformat*{\subparagraph}{\large\bfseries}
+
+
+
+%###########################
+\begin{document}
+%###########################
+\setcounter{page}{0}
+\include{front/titlepage}
+
+\frontmatter
+
+\include{front/preface}
+\include{front/formal}
+\include{front/acknowledgements}
+
+
+%%%%% Table of Content
+%\cleardoublepage
+\renewcommand*\contentsname{Table of contents}
+\tableofcontents*
+
+%% Font stuff 
+\include{front/summary_english}
+\include{front/summary_danish}
+
+%\cleardoublepage
+\include{front/publications}
+\include{front/thesisoverview}
+\clearpage
+
+
+
+%%%%%%% PREFACE CHAPTERS INCLUDE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\mainmatter
+\setcounter{page}{1}
+
+%%%%Put number on subsubsection:
+\setcounter{secnumdepth}{3}
+\newpage
+
+%%%%%%%%%%% INTRODUCTIOn %%%%%%%%%%%%%%%
+
+
+%\titlespacing\section{0pt}{0pt}{\parskip}{-\parskip}
+
+%% Header
+\makepagestyle{dtu}
+
+\makeoddhead{dtu}{\leftmark}{}{\thepage}
+\makeevenhead{dtu}{\thepage}{}{\leftmark}
+
+\makeheadrule{dtu}{\textwidth}{0.3pt}
+\pagestyle{dtu}
+\aliaspagestyle{chapter}{dtu}
+
+\cleardoublepage
+\begingroup
+
+\chapter{Background}
+\include{introduction/metagenomics}
+\endgroup
+
+\begingroup
+\chapter{Methods} 
+\include{methods/ML}
+\endgroup
+
+%%% Introduction of each Project 
+\begingroup
+\chapter{Research objectives}
+\include{middle/Research_objectives}
+
+\chapter{Description of research projects}
+\include{middle/description_research_projects}
+\endgroup
+
+%%% Summary and discussion of results 
+\begingroup
+\chapter{Summary of results and discussion}
+\include{middle/2_phamb_results}
+
+
+\endgroup
+
+%%% Conclusion and Ethics statement
+\include{tail/Conclusion}
+\include{tail/ethical}
+
+
+%%%%% APPENDIX %%%%
+%\thispagestyle{empty}
+\newcommand{\beginsupplement}{%
+        \setcounter{table}{0}
+        \renewcommand{\thetable}{S\arabic{table}}%
+        \setcounter{figure}{0}
+        \renewcommand{\thefigure}{S\arabic{figure}}%
+     }
+\beginsupplement
+
+
+%%%%%%% Papers 
+
+\begingroup
+
+% Set page layout for papers only
+\makepagestyle{papers}
+\makeoddhead{papers}{\thepage}{}{\leftmark}
+\makeevenhead{papers}{\leftmark}{}{\thepage}
+\makeheadrule{papers}{\textwidth}{0.3pt}
+\pagestyle{papers}
+\aliaspagestyle{chapter}{papers}
+
+\chapter{Manuscripts}
+
+\include{papers/phamb}
+
+\endgroup
+
+
+%%%%% APPENDIX %%%%
+\begingroup
+
+\makepagestyle{papers}
+\makeoddhead{papers}{\thepage}{}{\leftmark}
+\makeevenhead{papers}{\leftmark}{}{\thepage}
+\makeheadrule{papers}{\textwidth}{0.3pt}
+\pagestyle{papers}
+\aliaspagestyle{chapter}{papers}
+
+\chapter{Appendix}
+\include{tail/appendix}
+\endgroup
+
+
+% Giv kapitel nummer. 
+\printbibliography[title={References}]
+
+
+\end{document}
