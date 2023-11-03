@@ -7,6 +7,7 @@ The template includes:
 - 1.5 spaced lines with line numbers (required for initial submission, easy to remove before publishing the preprint)
 - Supplementary figures in its own file, with one figure per page, but possible to reference from the main text just like any other figure. Supplementary file also has a title, a list of figures with page numbers and all supplementary file pages are numbered, including the title page. The supplementary page numbers and supplementary figure numbers start with the prefix S.
 - a selection of bibliography styles etc.
+
 It’s an adaptation of the templates of Nature Publishing group. Also, don’t forget it’s possible to publish the preprint directly from the Overleaf interface
 
 ## Usage:
