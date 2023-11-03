@@ -1,0 +1,36 @@
+\documentclass[main.tex]{subfiles}
+\usepackage{cleveref}
+\usepackage{afterpage}
+% \usepackage[nomarkers,figuresonly]{endfloat}
+
+\begin{document}
+
+\renewcommand{\figurename}{Supplementary Figure}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\thepage}{S\arabic{page}}
+
+\renewcommand\floatpagefraction{.001}
+\makeatletter
+\setlength\@fpsep{\textheight}
+\makeatother
+
+\title{Supplementary figures for the paper "The discovery of everything: all scientific problems solved"}
+\maketitle
+
+\listoffigures
+
+\afterpage{\clearpage}
+\begin{figure}[!p] 
+\centering
+\includegraphics[width=0.9\textwidth]{fig.eps}
+\caption[Part of caption for the list of figures]{This is a widefig. This is an example of long caption this is an example of long caption  this is an example of long caption this is an example of long caption}\label{figS1}
+\end{figure}
+
+\afterpage{\clearpage}
+\begin{figure}[!p] 
+\centering
+\includegraphics[width=0.9\textwidth]{fig.eps}
+\caption[Main title of the figure]{This is a widefig. This is an example of long caption this is an example of long caption  this is an example of long caption this is an example of long caption}\label{figS2}
+\end{figure}
+
+\end{document}

@@ -1,18 +1,21 @@
-# Thesis template
 
-It's based on Joachim Johansen's thesis on phage genomics. The thesis has been 
-stripped and could further be made less specific to the examples from the thesis.
+## Description:
 
+This is an Overleaf template that has some things needed for an initial submission to most journals, based on the requirements of Nature Publishing group. It is best suited for preparing an initial submission and a preprint. For the final submission, see the specific journal requirements.
 
-## How to use
+The template includes:
+- 1.5 spaced lines with line numbers (required for initial submission, easy to remove before publishing the preprint)
+- Supplementary figures in its own file, with one figure per page, but possible to reference from the main text just like any other figure. Supplementary file also has a title, a list of figures with page numbers and all supplementary file pages are numbered, including the title page. The supplementary page numbers and supplementary figure numbers start with the prefix S.
+- a selection of bibliography styles etc.
+It’s an adaptation of the templates of Nature Publishing group. Also, don’t forget it’s possible to publish the preprint directly from the Overleaf interface
 
-You can create the template from the repository using overleaf, see 
-instruction on [how to create an overleaf project from an exisiting git repository](https://www.overleaf.com/learn/how-to/Git_integration#Creating_an_Overleaf_project_from_an_existing_Git_repository).
+## Usage:
+You can zip this folder and upload it to Overleaf. Then open `main.tex` file and compile. Edit as you wish.
 
-The general workflow of thesis writing was:
+## Project files:
+1. **main.tex** - main document
+2. **supplementary_figures.tex** - supplementary figures document
+3. **sn-bibliography.bib** - the bibliography source file for main.tex.
+4. **bst/** - a folder with bibliography styles (copy to the root folder to use)
 
-1. Write the thesis core in a google doc with paperpile as reference manager.
-2. Review and get feedback in google docs
-2. Export the thesis when ready (either by copy-pasting or using pandoc) to overleaf
-2. Export paperpile references from as a bibtex file from the google doc
-3. Add back references, typeset and polish everything in overleaf
+See the comments in **main.tex** on how to apply different styles for initial submission and the preprint prublishing.

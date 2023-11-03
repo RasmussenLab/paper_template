@@ -30,10 +30,10 @@
 %%The option is available for: sn-basic.bst, sn-vancouver.bst, sn-chicago.bst, sn-mathphys.bst. %  
  
 % \documentclass[sn-nature]{sn-jnl}% Style for submissions to Nature Portfolio journals
-\documentclass[referee,sn-aps]{sn-jnl}
+\documentclass[sn-nature,referee,lineno]{sn-jnl}
 %%\documentclass[sn-basic]{sn-jnl}% Basic Springer Nature Reference Style/Chemistry Reference Style
 % \documentclass[sn-mathphys,Numbered]{sn-jnl}% Math and Physical Sciences Reference Style
-% \documentclass[sn-aps]{sn-jnl}% American Physical Society (APS) Reference Style
+%%\documentclass[sn-aps]{sn-jnl}% American Physical Society (APS) Reference Style
 %%\documentclass[sn-vancouver,Numbered]{sn-jnl}% Vancouver Reference Style
 %%\documentclass[sn-apa]{sn-jnl}% APA Reference Style 
 %%\documentclass[sn-chicago]{sn-jnl}% Chicago-based Humanities Reference Style
@@ -57,36 +57,7 @@
 \usepackage{algorithmicx}%
 \usepackage{algpseudocode}%
 \usepackage{listings}%
-\usepackage{xr}
-\usepackage{cleveref}
-\usepackage{lineno}
-\usepackage{subfiles} % Best loaded last in the preamble
 %%%%
-\linenumbers  % Comment to remove the line numbers
-\makeatletter
-\newcommand*{\addFileDependency}[1]{% argument=file name and extension
-\typeout{(#1)}% latexmk will find this if $recorder=0
-% however, in that case, it will ignore #1 if it is a .aux or 
-% .pdf file etc and it exists! If it doesn't exist, it will appear 
-% in the list of dependents regardless)
-%
-% Write the following if you want it to appear in \listfiles 
-% --- although not really necessary and latexmk doesn't use this
-%
-\@addtofilelist{#1}
-%
-% latexmk will find this message if #1 doesn't exist (yet)
-\IfFileExists{#1}{}{\typeout{No file #1.}}
-}\makeatother
-
-\newcommand*{\myexternaldocument}[1]{%
-\externaldocument{#1}%
-\addFileDependency{#1.tex}%
-\addFileDependency{#1.aux}%
-}
-
-\myexternaldocument{supplementary_figures}
-
 
 %%%%%=============================================================================%%%%
 %%%%  Remarks: This template is provided to aid authors with the preparation
@@ -103,13 +74,27 @@
 
 %\jyear{2021}%
 
+%% as per the requirement new theorem styles can be included as shown below
+\theoremstyle{thmstyleone}%
+\newtheorem{theorem}{Theorem}%  meant for continuous numbers
+%%\newtheorem{theorem}{Theorem}[section]% meant for sectionwise numbers
+%% optional argument [theorem] produces theorem numbering sequence instead of independent numbers for Proposition
+\newtheorem{proposition}[theorem]{Proposition}% 
+%%\newtheorem{proposition}{Proposition}% to get separate numbers for theorem and proposition etc.
 
-% \raggedbottom
+\theoremstyle{thmstyletwo}%
+\newtheorem{example}{Example}%
+\newtheorem{remark}{Remark}%
+
+\theoremstyle{thmstylethree}%
+\newtheorem{definition}{Definition}%
+
+\raggedbottom
 %%\unnumbered% uncomment this for unnumbered level heads
 
 \begin{document}
 
-\title{The discovery of everything: all scientific problems solved}
+\title{Taxometer: deep learning improves taxonomic classification of contigs using binning features and a hierarchical loss}
 
 %%=============================================================%%
 %% Prefix	-> \pfx{Dr}
@@ -123,66 +108,71 @@
 %%                 \dgr{MSc, PhD}}\email{iauthor@gmail.com}
 %%=============================================================%%
 
-\author[1,2]{\fnm{First} \sur{Author}}\email{email1@smth.com}
+\author[1]{\fnm{Svetlana} \sur{Kutuzova}}\email{svegal@di.ku.dk}
 
-\author[1]{\fnm{Second} \sur{Author}}\email{email1@smth.com}
+\author[1]{\fnm{Mads} \sur{Nielsen}}\email{madsn@di.ku.dk}
 
-\author[2]{\fnm{Third} \sur{Author}}\email{email1@smth.com}
+\author[2]{\fnm{Pau} \sur{Piera}}\email{pau.piera@cpr.ku.dk}
 
-\author*[2]{\fnm{Fourth} \sur{Author}}\email{email1@smth.com}
+\author*[2]{\fnm{Jakob} \sur{Nybo Nissen}}\email{jakob.nissen@cpr.ku.dk}
 \equalcont{These authors contributed equally to this work.}
 
-\author*[1,2]{\fnm{Fifth} \sur{Author}}\email{email1@smth.com}
+\author*[2,3]{\fnm{Simon} \sur{Rasmussen}}\email{simon.rasmussen@cpr.ku.dk}
 \equalcont{These authors contributed equally to this work.}
 
-\affil[1]{\orgdiv{Department of Everything}, \orgname{University of Sciencevill}, \orgaddress{\street{Science Street}, \city{Sciencevill}, \postcode{666}, \country{Discoveryland}}}
+\affil[1]{\orgdiv{Department of Computer Science}, \orgname{University of Copenhagen}, \orgaddress{\street{Street}, \city{City}, \postcode{100190}, \state{State}, \country{Country}}}
 
-\affil[2]{\orgdiv{The Big Money Foundation Center}, \orgname{Technical University of Discoveryland}, \orgaddress{\street{Another Street}, \city{Sciencevill}, \postcode{777}, \country{Discoveryland}}}
+\affil[2]{\orgdiv{The Novo Nordisk Foundation Center for Protein Research}, \orgname{University of Copenhagen}, \orgaddress{\street{Street}, \city{City}, \postcode{10587}, \state{State}, \country{Country}}}
+
+\affil[3]{\orgdiv{The Novo Nordisk Foundation Center for Genomic Mechanisms of Disease}, \orgname{Broad Institute of MIT and Harvard}, \orgaddress{\street{Street}, \city{City}, \postcode{610101}, \state{State}, \country{Country}}}
+
+
+
+%%==================================%%
+%% sample for unstructured abstract %%
+%%==================================%%
 
 \abstract{The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. Authors are advised to check the author instructions for the journal they are submitting to for word limits and if structural elements like subheadings, citations, or equations are permitted.}
 
-\keywords{science, discovery, theory of life}
+%%================================%%
+%% Sample for structured abstract %%
+%%================================%%
 
+% \abstract{\textbf{Purpose:} The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. The abstract must not include subheadings (unless expressly permitted in the journal's Instructions to Authors), equations or citations. As a guide the abstract should not exceed 200 words. Most journals do not set a hard limit however authors are advised to check the author instructions for the journal they are submitting to.
+% 
+% \textbf{Methods:} The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. The abstract must not include subheadings (unless expressly permitted in the journal's Instructions to Authors), equations or citations. As a guide the abstract should not exceed 200 words. Most journals do not set a hard limit however authors are advised to check the author instructions for the journal they are submitting to.
+% 
+% \textbf{Results:} The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. The abstract must not include subheadings (unless expressly permitted in the journal's Instructions to Authors), equations or citations. As a guide the abstract should not exceed 200 words. Most journals do not set a hard limit however authors are advised to check the author instructions for the journal they are submitting to.
+% 
+% \textbf{Conclusion:} The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. The abstract must not include subheadings (unless expressly permitted in the journal's Instructions to Authors), equations or citations. As a guide the abstract should not exceed 200 words. Most journals do not set a hard limit however authors are advised to check the author instructions for the journal they are submitting to.}
 
-\maketitle   % Comment that to remove the credentials and abstract for submission
+\keywords{taxonomic profiling, deep learning, metagenomics}
 
+%%\pacs[JEL Classification]{D8, H51}
 
+%%\pacs[MSC Classification]{35A01, 65L10, 65L12, 65L20, 65L70}
 
-% A Brief Communication is a concise report describing potentially groundbreaking yet preliminary method or tool developments, highly practical tweaks to an existing method or tool, software platforms, resources of broad interest, and technical critiques of widely used methodologies.
+\maketitle
 
-% Format
-
-% Abstract – up to 70 words, unreferenced.
-% Main text – 1,200 words (up to 1600 words with editorial discretion), including abstract, references and figure legends.
-% The main text should not contain sections nor subheadings. 
-% Display items – maximum 2 figures and/or tables (up to 3 items with editorial discretion).
-% Online Methods section should be included and should contain subheadings.
-% References – as a guideline, we typically recommend up to 20. 
-% Brief Communications include received/accepted dates. 
-% Brief Communications may be accompanied by supplementary information. 
-% Brief Communications are peer reviewed.
-
-\section*{Introduction}\label{sec1}
-
-Here I reference the Supplementary Figure~\ref{figS1}
+\section{Introduction}\label{sec1}
 
 The Introduction section, of referenced text \cite{bib1} expands on the background of the work (some overlap with the Abstract is acceptable). The introduction should not include subheadings.
 
 Springer Nature does not impose a strict layout as standard however authors are advised to check the individual requirements for the journal they are planning to submit to as there may be journal-level preferences. When preparing your text please also be aware that some stylistic choices are not supported in full text XML (publication version), including coloured font. These will not be replicated in the typeset article if it is accepted. 
 
-\section*{Results}\label{sec2}
+\section{Results}\label{sec2}
 
 Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text.
 
-\section*{This is an example for first level head---section head}\label{sec3}
+\section{This is an example for first level head---section head}\label{sec3}
 
-\subsection*{This is an example for second level head---subsection head}\label{subsec2}
+\subsection{This is an example for second level head---subsection head}\label{subsec2}
 
-\subsubsection*{This is an example for third level head---subsubsection head}\label{subsubsec2}
+\subsubsection{This is an example for third level head---subsubsection head}\label{subsubsec2}
 
 Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. 
 
-\section*{Equations}\label{sec4}
+\section{Equations}\label{sec4}
 
 Equations in \LaTeX\ can either be inline or on-a-line by itself (``display equations''). For
 inline equations use the \verb+$...$+ commands. E.g.: The equation
@@ -213,7 +203,7 @@ The class file also supports the use of \verb+\mathbb{}+, \verb+\mathscr{}+ and
 and \verb+\mathcal{R}+ produces $\mathbb{R}$, $\mathscr{R}$ and $\mathcal{R}$
 respectively (refer Subsubsection~\ref{subsubsec2}).
 
-\section*{Tables}\label{sec5}
+\section{Tables}\label{sec5}
 
 Tables can be inserted via the normal table and tabular environment. To put
 footnotes inside tables you should use \verb+\footnotetext[]{...}+ tag.
@@ -307,7 +297,7 @@ Element 6 & 500 A & 961  & $922\pm10$  & 900 A & 1268 & $1092\pm40$ \\
 \footnotetext[1]{This is an example of table footnote.}
 \end{sidewaystable}
 
-\section*{Figures}\label{sec6}
+\section{Figures}\label{sec6}
 
 As per the \LaTeX\ standards you need to use eps images for \LaTeX\ compilation and \verb+pdf/jpg/png+ images for \verb+PDFLaTeX+ compilation. This is one of the major difference between \LaTeX\ and \verb+PDFLaTeX+. Each image should be from a single input .eps/vector image file. Avoid using subfigures. The command for inserting images for \LaTeX\ and \verb+PDFLaTeX+ can be generalized. The package used to insert images in \verb+LaTeX/PDFLaTeX+ is the graphicx package. Figures can be inserted via the normal figure environment as shown in the below example:
 
@@ -339,7 +329,7 @@ In case of double column layout, the above format puts figure captions/images to
 
 For sample purpose, we have included the width of images in the optional argument of \verb+\includegraphics+ tag. Please ignore this. 
 
-\section*{Algorithms, Program codes and Listings}\label{sec7}
+\section{Algorithms, Program codes and Listings}\label{sec7}
 
 Packages \verb+algorithm+, \verb+algorithmicx+ and \verb+algpseudocode+ are used for setting algorithms in \LaTeX\ using the format:
 
@@ -430,7 +420,7 @@ Write('Pascal keywords.');
 \end{lstlisting}
 \end{minipage}
 
-\section*{Cross referencing}\label{sec8}
+\section{Cross referencing}\label{sec8}
 
 Environments such as figure, table, equation and align can have a label
 declared via the \verb+\label{#label}+ command. For figures and table
@@ -444,7 +434,7 @@ the label declared for Figure~\ref{fig1} which is
 
 To reference line numbers in an algorithm, consider the label declared for the line number 2 of Algorithm~\ref{algo1} is \verb+\label{algln2}+. To cross-reference it, use the command \verb+\ref{algln2}+ for which it comes up as line~\ref{algln2} of Algorithm~\ref{algo1}.
 
-\subsection*{Details on reference citations}\label{subsec7}
+\subsection{Details on reference citations}\label{subsec7}
 
 Standard \LaTeX\ permits only numerical citations. To support both numerical and author-year citations this template uses \verb+natbib+ \LaTeX\ package. For style guidance please refer to the template user manual.
 
@@ -452,7 +442,7 @@ Here is an example for \verb+\cite{...}+: \cite{bib1}. Another example for \verb
 
 All cited bib entries are printed at the end of this article: \cite{bib3}, \cite{bib4}, \cite{bib5}, \cite{bib6}, \cite{bib7}, \cite{bib8}, \cite{bib9}, \cite{bib10}, \cite{bib11}, \cite{bib12} and \cite{bib13}.
 
-\section*{Examples for theorem like environments}\label{sec10}
+\section{Examples for theorem like environments}\label{sec10}
 
 For theorem like environments, we require \verb+amsthm+ package. There are three types of predefined theorem styles exists---\verb+thmstyleone+, \verb+thmstyletwo+ and \verb+thmstylethree+ 
 
@@ -531,7 +521,7 @@ convallis neque. Sed dolor orci, scelerisque ac, dapibus nec, ultricies ut, mi. 
 
 Sample body text. Sample body text. Sample body text. Sample body text. Sample body text (refer Figure~\ref{fig1}). Sample body text. Sample body text. Sample body text (refer Table~\ref{tab3}). 
 
-\section*{Methods}\label{sec11}
+\section{Methods}\label{sec11}
 
 Topical subheadings are allowed. Authors must ensure that their Methods section includes adequate experimental and characterization data necessary for others in the field to reproduce their work. Authors are encouraged to include RIIDs where appropriate. 
 
@@ -547,11 +537,11 @@ Topical subheadings are allowed. Authors must ensure that their Methods section 
 
 If your manuscript includes potentially identifying patient/participant information, or if it describes human transplantation research, or if it reports results of a clinical trial then  additional information will be required. Please visit (\url{https://www.nature.com/nature-research/editorial-policies}) for Nature Portfolio journals, (\url{https://www.springer.com/gp/authors-editors/journal-author/journal-author-helpdesk/publishing-ethics/14214}) for Springer Nature journals, or (\url{https://www.biomedcentral.com/getpublished/editorial-policies\#ethics+and+consent}) for BMC.
 
-\section*{Discussion}\label{sec12}
+\section{Discussion}\label{sec12}
 
 Discussions should be brief and focused. In some disciplines use of Discussion or `Conclusion' is interchangeable. It is not mandatory to use both. Some journals prefer a section `Results and Discussion' followed by a section `Conclusion'. Please refer to Journal-level guidance for any specific requirements. 
 
-\section*{Conclusion}\label{sec13}
+\section{Conclusion}\label{sec13}
 
 Conclusions may be used to restate your hypothesis or research question, restate your major findings, explain the relevance and the added value of your work, highlight any limitations of your study, describe future directions for research and recommendations. 
 
@@ -612,7 +602,39 @@ Nature Portfolio journals: \url{https://www.nature.com/nature-research/editorial
 BMC journals: \url{https://www.biomedcentral.com/getpublished/editorial-policies}
 \end{flushleft}
 
-\bibstyle{sn-nature}
-\bibliography{sn-bibliography}
+\begin{appendices}
+
+\section{Supplementary figures}\label{secA1}
+
+An appendix contains supplementary information that is not an essential part of the text itself but which may be helpful in providing a more comprehensive understanding of the research problem or it is information that is too cumbersome to be included in the body of the paper.
+
+%%=============================================%%
+%% For submissions to Nature Portfolio Journals %%
+%% please use the heading ``Extended Data''.   %%
+%%=============================================%%
+
+%%=============================================================%%
+%% Sample for another appendix section			       %%
+%%=============================================================%%
+
+%% \section{Example of another appendix section}\label{secA2}%
+%% Appendices may be used for helpful, supporting or essential material that would otherwise 
+%% clutter, break up or be distracting to the text. Appendices can consist of sections, figures, 
+%% tables and equations etc.
+
+\end{appendices}
+
+%%===========================================================================================%%
+%% If you are submitting to one of the Nature Portfolio journals, using the eJP submission   %%
+%% system, please include the references within the manuscript file itself. You may do this  %%
+%% by copying the reference list from your .bbl file, paste it into the main manuscript .tex %%
+%% file, and delete the associated \verb+\bibliography+ commands.                            %%
+%%===========================================================================================%%
+
+\bibliography{sn-bibliography}% common bib file
+\bibliographystyle{sn-nature}
+%% if required, the content of .bbl file can be included here once bbl is generated
+%%\input sn-article.bbl
+
 
 \end{document}
