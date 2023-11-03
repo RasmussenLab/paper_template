@@ -10,7 +10,7 @@ The template includes:
 It’s an adaptation of the templates of Nature Publishing group. Also, don’t forget it’s possible to publish the preprint directly from the Overleaf interface
 
 ## Usage:
-You can zip this folder and upload it to Overleaf. Then open `main.tex` file and compile. Edit as you wish.
+On Overleaf, click "New Project" -> "Import from GitHub". Alternatively, zip this folder and upload it to Overleaf manually. Then open `main.tex` file and compile. Edit as you wish.
 
 ## Project files:
 1. **main.tex** - main document
