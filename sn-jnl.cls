@@ -119,7 +119,7 @@
 
 %%\ExecuteOptions{twosidecrop,crop,centre,info,croppage}
 \ProcessOptions
-\LoadClass[twoside,fleqn]{article}
+\LoadClass[oneside,fleqn]{article}
 
 \gdef\refereedefns{%
 \if@referee%
@@ -299,7 +299,7 @@
 \setlength\lineskip{1\p@}%
 \setlength\normallineskip{1\p@}%
 %%\renewcommand\baselinestretch{1.5}%
-\parskip=0pt%
+\parskip=10pt%
 %
 % Page break penalties
 %
@@ -1728,7 +1728,7 @@
   \def\bibfont{\reset@font\fontfamily{\rmdefault}\normalsize\selectfont}%
 \fi%
 \if@Standard@Nature@refstyle%
-  \usepackage[numbers,sort&compress]{natbib}%
+  \usepackage[numbers,sort&compress,super]{natbib}%
   \gdef\NumBib{YES}%
   \bibliographystyle{sn-nature}%
   \setlength{\bibsep}{1em}%
@@ -1756,7 +1756,6 @@
 
 %% Macros for border matrix %%
 
-\newif\if@borderstar
 
 \def\bordermatrix{\@ifnextchar*{%
 \@borderstartrue\@bordermatrix@i}{\@borderstarfalse\@bordermatrix@i*}%
